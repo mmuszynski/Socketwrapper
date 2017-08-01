@@ -11,25 +11,20 @@ import XCTest
 
 class SocketWrapperTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testUDPSend() {
+        do {
+            //Create a UDP Socket
+            let socket = try Socket(format: .udp)
+            var f: Float = 4.0
+            var data = Data()
+            data.encode("is anybody there")
+            
+            try data.withUnsafeBytes({ (ptr) -> Void in
+                try socket.send(message: ptr, ofLength: data.count, toAddress: "www.mmuszynski.com", onService: .port(7000))
+            })
+            
+        } catch {
+            XCTFail("\(error)")
         }
     }
     
