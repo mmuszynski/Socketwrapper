@@ -117,6 +117,12 @@ class Socket {
         return address
     }
     
+    func send(data: Data, toAddress address: String, onService service: SocketAddressService) throws {
+        try data.withUnsafeBytes({ (dataPtr) -> Void in
+            try send(message: dataPtr, ofLength: data.count, toAddress: address, onService: service)
+        })
+    }
+    
     func send(message: UnsafePointer<CChar>, ofLength length: Int, toAddress address: String, onService service: SocketAddressService) throws {
         switch self.type {
         case .udp:
