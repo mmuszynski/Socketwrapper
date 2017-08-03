@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>SocketWrapper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>SocketWrapper.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>2778DB0D1F2F6DF500F6A289</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2778DB161F2F6DF500F6A289</key>
 		<dict>
 			<key>primary</key>
 			<true/>

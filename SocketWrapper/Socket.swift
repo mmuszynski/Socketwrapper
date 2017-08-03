@@ -12,7 +12,7 @@ import Foundation
 //Namespace
 //Protocol
 
-enum SocketNamespace {
+public enum SocketNamespace {
     case local, internet
     
     var value: Int32 {
@@ -25,7 +25,7 @@ enum SocketNamespace {
     }
 }
 
-enum SocketFormat {
+public enum SocketFormat {
     case tcp, udp, raw
     
     var value: Int32 {
@@ -40,7 +40,7 @@ enum SocketFormat {
     }
 }
 
-enum SocketAddressService {
+public enum SocketAddressService {
     case name(_: String)
     case port(_: Int)
     
@@ -54,7 +54,7 @@ enum SocketAddressService {
     }
 }
 
-class Socket {
+public class Socket {
     var fileDescriptor: Int32?
     var type: SocketFormat
     var namespace: SocketNamespace
@@ -66,7 +66,7 @@ class Socket {
     /// Initializes and creates a socket. Throws an error if the socket is not able to be created.
     ///
     /// - Parameter format: The `SocketFormat` to be used. Currently supports UDP, TCP, and RAW IP. J/K, only supports UDP right now.
-    init(format: SocketFormat, isLocal: Bool = false) throws {
+    public init(format: SocketFormat, isLocal: Bool = false) {
         //Not sure if I really need this or not, but I'm going to include it for completeness.
         self.namespace = isLocal ? .local : .internet
         self.type = format
@@ -75,7 +75,7 @@ class Socket {
     /// Creates the socket and sets the filedescriptor value. This is probably the only thing that needs to happen when sending a packet over UDP.
     ///
     /// - Throws: SocketCreateError translating the appropriate C errno.
-    func openSocket() throws {
+    public func open() throws {
         //int socket (int namespace, int style, int protocol)
         let fd = socket(namespace.value, type.value, 0)
         guard fd != -1 else {
@@ -123,7 +123,7 @@ class Socket {
         })
     }
     
-    func send(message: UnsafePointer<CChar>, ofLength length: Int, toAddress address: String, onService service: SocketAddressService) throws {
+    public func send(message: UnsafePointer<CChar>, ofLength length: Int, toAddress address: String, onService service: SocketAddressService) throws {
         switch self.type {
         case .udp:
             try sendUDP(message: message, ofLength: length, toAddress: address, onService: service)
@@ -135,7 +135,7 @@ class Socket {
     private func sendUDP(message: UnsafePointer<CChar>, ofLength length: Int, toAddress address: String, onService service: SocketAddressService) throws {
         
         guard let fd = fileDescriptor else {
-            try openSocket()
+            try open()
             try sendUDP(message: message, ofLength: length, toAddress: address, onService: service)
             return
         }
@@ -164,9 +164,40 @@ class Socket {
         
     }
     
+    public func listen() throws {
+        guard let fd = fileDescriptor else {
+            try open()
+            try listen()
+            return
+        }
+        
+        var buf = [UInt8](repeatElement(0, count: 512))
+        let bytes = recvfrom(fd, &buf, 512, 0, nil, nil)
+        let data = Data(bytes: buf)
+        print(bytes)
+        print(try! data.decode(String.self, atOffset: 0, withLength: bytes))
+    }
+    
+    public func setReceiveTimeout(seconds: Double) throws {
+        guard let fd = fileDescriptor else {
+            try self.open()
+            try setReceiveTimeout(seconds: seconds)
+            return
+        }
+        var time = timeval(tv_sec: Int(seconds), tv_usec: __darwin_suseconds_t(seconds.truncatingRemainder(dividingBy: 1.0) * 1000000))
+        let code = setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &time, socklen_t(MemoryLayout<timeval>.size))
+        guard code == 0 else {
+            fatalError("\(errno)")
+        }
+    }
+    
 }
 
-enum SocketCreateError: Error {
+public enum SocketError: Error {
+    case socketNotOpen
+}
+
+public enum SocketCreateError: Error {
     ///*EPERM:*
     ///Insufficient privileges to create the socket.
     case insufficientPrivileges
@@ -216,7 +247,7 @@ enum SocketCreateError: Error {
 /// Errors generated while binding a `SocketAddress` to a `Socket`
 ///
 /// Further information found in the [GNU Manual](http://www.gnu.org/software/libc/manual/html_node/Setting-Address.html#Setting-Address).
-enum SocketBindError: Error {
+public enum SocketBindError: Error {
     ///*EBADF:*
     ///The socket argument is not a valid file descriptor.
     case socketDescriptorInvalid

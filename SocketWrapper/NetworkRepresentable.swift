@@ -42,6 +42,13 @@ extension Double: NetworkRepresentable {}
 extension CGFloat: NetworkRepresentable {}
 
 extension String: NetworkRepresentable {
+    init?(fromNetworkRepresentation networkRepresentation: Data) {
+        guard let string = String(bytes: networkRepresentation, encoding: .utf8) else {
+            return nil
+        }
+        self = string
+    }
+    
     var networkRepresentation: Data {
         guard let data = self.data(using: .utf8) else {
             fatalError()
