@@ -43,6 +43,7 @@ public enum SocketFormat {
 public enum SocketAddressService {
     case name(_: String)
     case port(_: Int)
+    case any
     
     var description: String {
         switch self {
@@ -50,6 +51,8 @@ public enum SocketAddressService {
             return name
         case .port(let number):
             return "\(number)"
+        case .any:
+            return "any"
         }
     }
 }
@@ -164,18 +167,21 @@ public class Socket {
         
     }
     
-    public func listen() throws {
+    public func listen(onService service: SocketAddressService) throws {
         guard let fd = fileDescriptor else {
             try open()
-            try listen()
+            try listen(onService: service)
             return
         }
         
-        var buf = [UInt8](repeatElement(0, count: 512))
-        let bytes = recvfrom(fd, &buf, 512, 0, nil, nil)
-        let data = Data(bytes: buf)
-        print(bytes)
-        print(try! data.decode(String.self, atOffset: 0, withLength: bytes))
+        var messageBuffer = [UInt8](repeatElement(0, count: 512))
+        let numberOfBytesReceived = recvfrom(fd, &messageBuffer, messageBuffer.count, 0, nil, nil)
+        guard numberOfBytesReceived != -1 else {
+            throw SocketError.undefined(errno: errno)
+        }
+        let messageData = Data(bytes: messageBuffer)
+        print(numberOfBytesReceived)
+        print(try! messageData.decode(String.self, atOffset: 0, withLength: numberOfBytesReceived))
     }
     
     public func setReceiveTimeout(seconds: Double) throws {
@@ -195,6 +201,7 @@ public class Socket {
 
 public enum SocketError: Error {
     case socketNotOpen
+    case undefined(errno: Int32)
 }
 
 public enum SocketCreateError: Error {
@@ -294,6 +301,4 @@ public enum SocketBindError: Error {
             self = .unknownError(errno: errno)
         }
     }
-    
-
 }

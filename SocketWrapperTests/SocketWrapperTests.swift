@@ -64,15 +64,47 @@ class SocketWrapperTests: XCTestCase {
         XCTAssertEqual(try! data.decode(Float.self, atOffset: 24), 223.1199798583984375)
     }
     
-//    func testPacketReceive() {
-//        let expectation = self.expectation(description: "blocking sender should receive data")
-//        DispatchQueue.global().async {
-//            let socket = Socket(format: .udp)
-//            try! socket.send(message: "ready player one", ofLength: "ready player one".count, toAddress: "localhost", onService: .port(62997))
-//            try! socket.listen()
-//            expectation.fulfill()
-//        }
-//        self.waitForExpectations(timeout: 60.0, handler: nil)
-//    }
+    func testPacketReceive() {
+        let expectation = self.expectation(description: "blocking sender should receive data")
+        DispatchQueue.global().async {
+            do {
+                let sender = Socket(format: .udp)
+                let receiver = Socket(format: .udp)
+                
+                DispatchQueue.global().async {
+                    do {
+                        try receiver.setReceiveTimeout(seconds: 5.0)
+                        try receiver.listen()
+                    } catch {
+                        XCTFail("\(error)")
+                    }
+                }
+                
+                try sender.send(data: "yo".networkRepresentation, toAddress: "localhost", onService: <#T##SocketAddressService#>)
+                expectation.fulfill()
+            } catch {
+                XCTFail("\(error)")
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: 20.0, handler: nil)
+    }
+    
+    func testPacketReceiveTimeout() {
+        let expectation = self.expectation(description: "blocking sender should receive data")
+        DispatchQueue.global().async {
+            do {
+                let socket = Socket(format: .udp)
+                //try! socket.send(message: "ready player one", ofLength: "ready player one".count, toAddress: "localhost", onService: .port(62997))
+                try socket.setReceiveTimeout(seconds: 1.0)
+                try socket.listen()
+                expectation.fulfill()
+            } catch {
+                XCTFail("\(error)")
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: 2.0, handler: nil)
+    }
     
 }
