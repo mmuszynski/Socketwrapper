@@ -8,6 +8,24 @@
 
 import Foundation
 
+public enum SocketError: Error {
+    case unimplemented
+    case socketNotOpen
+    case timeout
+    case undefined(errno: Int32)
+    
+    init(errno: Int32 = errno) {
+        switch errno {
+        case EWOULDBLOCK, EAGAIN:
+            //probably need to run more checks here
+            //like, is this a blocking socket?
+            self = .timeout
+        default:
+            self = .undefined(errno: errno)
+        }
+    }
+}
+
 //enum SocketError: Error {
     /*
      EPERM

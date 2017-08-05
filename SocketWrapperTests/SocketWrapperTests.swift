@@ -41,13 +41,13 @@ class SocketWrapperTests: XCTestCase {
         let unsignedInt32 = Data([0x00, 0x02, 0x10, 0x04])
         let unsignedInt = Data([0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08])
         
-        let uint8 = UInt8(fromNetworkRepresentation: unsignedInt8)
+        let uint8 = UInt8(withNetworkRepresentation: unsignedInt8)
         XCTAssertEqual(uint8, 255)
-        let uint16 = UInt16(fromNetworkRepresentation: unsignedInt16)
+        let uint16 = UInt16(withNetworkRepresentation: unsignedInt16)
         XCTAssertEqual(uint16, 4096 + 256 + 1)
-        let uint32 = UInt32(fromNetworkRepresentation: unsignedInt32)
+        let uint32 = UInt32(withNetworkRepresentation: unsignedInt32)
         XCTAssertEqual(uint32, 135172)
-        let uint = UInt(fromNetworkRepresentation: unsignedInt)
+        let uint = UInt(withNetworkRepresentation: unsignedInt)
         XCTAssertEqual(uint, 72623859790382856)
     }
     
@@ -65,7 +65,7 @@ class SocketWrapperTests: XCTestCase {
     }
     
     func testPacketReceive() {
-        let expectation = self.expectation(description: "blocking sender should receive data")
+        let expectation = self.expectation(description: "waiting on timeout")
         DispatchQueue.global().async {
             do {
                 let sender = Socket(format: .udp)
@@ -74,14 +74,21 @@ class SocketWrapperTests: XCTestCase {
                 DispatchQueue.global().async {
                     do {
                         try receiver.setReceiveTimeout(seconds: 5.0)
-                        try receiver.listen()
+                        try receiver.bindSelf(to: "localhost", on: .port(54321))
+                        try receiver.blockingReceive()
+                        
+                        let buffer = Data(bytes: receiver.messageBuffer[0..<2])
+                        let string = String(withNetworkRepresentation: buffer)
+                        XCTAssertEqual(string, "yo")
+                        
+                        expectation.fulfill()
                     } catch {
                         XCTFail("\(error)")
+                        expectation.fulfill()
                     }
                 }
                 
-                try sender.send(data: "yo".networkRepresentation, toAddress: "localhost", onService: <#T##SocketAddressService#>)
-                expectation.fulfill()
+                try sender.send(data: "yo".networkRepresentation, toAddress: "localhost", onService: .port(54321))
             } catch {
                 XCTFail("\(error)")
                 expectation.fulfill()
@@ -91,20 +98,50 @@ class SocketWrapperTests: XCTestCase {
     }
     
     func testPacketReceiveTimeout() {
-        let expectation = self.expectation(description: "blocking sender should receive data")
+        let expectation = self.expectation(description: "waiting on timeout")
         DispatchQueue.global().async {
             do {
                 let socket = Socket(format: .udp)
                 //try! socket.send(message: "ready player one", ofLength: "ready player one".count, toAddress: "localhost", onService: .port(62997))
                 try socket.setReceiveTimeout(seconds: 1.0)
-                try socket.listen()
+                try socket.blockingReceive()
+                expectation.fulfill()
+            } catch SocketError.timeout {
                 expectation.fulfill()
             } catch {
-                XCTFail("\(error)")
+                XCTFail("Wrong error: \(error)")
                 expectation.fulfill()
             }
         }
         self.waitForExpectations(timeout: 2.0, handler: nil)
+    }
+    
+    func testHeartbeatReceiver() {
+        let heartbeatSender = Socket(format: .udp)
+        let receiver = Socket(format: .udp)
+        
+        do {
+            try receiver.bindSelf(to: "localhost", on: .port(12345))
+            try receiver.setReceiveTimeout(seconds: 2.0)
+        } catch {
+            XCTFail()
+        }
+        
+        let timer = Timer(timeInterval: 0.5, repeats: true) { timer in
+            do {
+                try heartbeatSender.send(data: "beat".networkRepresentation, toAddress: "localhost", onService: .port(12345))
+            } catch {
+                XCTFail()
+            }
+        }
+        
+        DispatchQueue.global().async {
+            do {
+                try receiver.blockingReceive()
+            } catch {
+                XCTFail()
+            }
+        }
     }
     
 }

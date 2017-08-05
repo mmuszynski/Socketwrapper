@@ -62,17 +62,27 @@ public class Socket {
     var type: SocketFormat
     var namespace: SocketNamespace
     var addressFamily = SocketAddressFamily.inet4
-    var hostname: String?
-    var serviceName: String?
-    var port: Int?
+    
+    var bufferLength: Int {
+        didSet {
+            initializeMessageBuffer()
+        }
+    }
+    var messageBuffer: [UInt8]!
+    
+    private func initializeMessageBuffer() {
+        self.messageBuffer = [UInt8](repeatElement(0, count: bufferLength))
+    }
     
     /// Initializes and creates a socket. Throws an error if the socket is not able to be created.
     ///
     /// - Parameter format: The `SocketFormat` to be used. Currently supports UDP, TCP, and RAW IP. J/K, only supports UDP right now.
-    public init(format: SocketFormat, isLocal: Bool = false) {
+    public init(format: SocketFormat, bufferLength: Int = 512, isLocal: Bool = false) {
         //Not sure if I really need this or not, but I'm going to include it for completeness.
         self.namespace = isLocal ? .local : .internet
         self.type = format
+        self.bufferLength = bufferLength
+        self.initializeMessageBuffer()
     }
     
     /// Creates the socket and sets the filedescriptor value. This is probably the only thing that needs to happen when sending a packet over UDP.
@@ -118,6 +128,20 @@ public class Socket {
         }
         
         return address
+    }
+    
+    public func bindSelf(to address: String, on service: SocketAddressService) throws {
+        guard let fd = fileDescriptor else {
+            try self.open()
+            try self.bindSelf(to: address, on: service)
+            return
+        }
+        
+        let addr = try getAddressInfo(hostname: address, service: service)
+        let result = bind(fd, addr.ai_addr, addr.ai_addrlen)
+        guard result != -1 else {
+            throw SocketError()
+        }
     }
     
     func send(data: Data, toAddress address: String, onService service: SocketAddressService) throws {
@@ -167,21 +191,26 @@ public class Socket {
         
     }
     
-    public func listen(onService service: SocketAddressService) throws {
+    /// Blocking listener implementing `recvfrom()`. The arguments for this method are optional for va
+    ///
+    /// - Throws: Don't know yet
+    public func blockingReceive() throws {
         guard let fd = fileDescriptor else {
             try open()
-            try listen(onService: service)
+            try blockingReceive()
             return
         }
         
-        var messageBuffer = [UInt8](repeatElement(0, count: 512))
-        let numberOfBytesReceived = recvfrom(fd, &messageBuffer, messageBuffer.count, 0, nil, nil)
-        guard numberOfBytesReceived != -1 else {
-            throw SocketError.undefined(errno: errno)
+        var fromAddr = sockaddr()
+        var fromAddrLen = socklen_t()
+        
+        var buffer = [UInt8](repeatElement(0, count: bufferLength))
+        let bytes = recvfrom(fd, &buffer, buffer.count, 0, &fromAddr, &fromAddrLen)
+        self.messageBuffer = buffer
+        
+        guard bytes != -1 else {
+            throw SocketError()
         }
-        let messageData = Data(bytes: messageBuffer)
-        print(numberOfBytesReceived)
-        print(try! messageData.decode(String.self, atOffset: 0, withLength: numberOfBytesReceived))
     }
     
     public func setReceiveTimeout(seconds: Double) throws {
@@ -197,11 +226,6 @@ public class Socket {
         }
     }
     
-}
-
-public enum SocketError: Error {
-    case socketNotOpen
-    case undefined(errno: Int32)
 }
 
 public enum SocketCreateError: Error {

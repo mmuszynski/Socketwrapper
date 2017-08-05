@@ -16,7 +16,7 @@ extension Data {
     func decode<T: NetworkRepresentable>(_: T.Type, atOffset offset: Int, withLength length: Int = MemoryLayout<T>.stride) throws -> T {
         let range = offset..<(offset + length)
         let subData = self[range]
-        guard let value = T(fromNetworkRepresentation: subData) else {
+        guard let value = T(withNetworkRepresentation: subData) else {
             fatalError("Couldn't decode \(T.self)")
         }
         return value
