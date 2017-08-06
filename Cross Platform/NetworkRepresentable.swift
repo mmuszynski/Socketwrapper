@@ -8,20 +8,20 @@
 
 import Foundation
 
-protocol NetworkRepresentable {
+public protocol NetworkRepresentable {
     var networkRepresentation: Data { get }
     init?(withNetworkRepresentation: Data)
 }
 
 extension NetworkRepresentable {
-    init?(withNetworkRepresentation networkRepresentation: Data) {
+    public init?(withNetworkRepresentation networkRepresentation: Data) {
         let data = Data(networkRepresentation.reversed())
         self = data.withUnsafeBytes { (ptr: UnsafePointer<Self>) -> Self in
             return ptr.pointee
         }
     }
     
-    var networkRepresentation: Data {
+    public var networkRepresentation: Data {
         var f = self
         let newData = Data(bytes: &f, count: MemoryLayout<Self>.stride).reversed()
         return Data(newData)
@@ -41,14 +41,14 @@ extension Double: NetworkRepresentable {}
 extension CGFloat: NetworkRepresentable {}
 
 extension String: NetworkRepresentable {
-    init?(withNetworkRepresentation networkRepresentation: Data) {
+    public init?(withNetworkRepresentation networkRepresentation: Data) {
         guard let string = String(bytes: networkRepresentation, encoding: .utf8) else {
             return nil
         }
         self = string
     }
     
-    var networkRepresentation: Data {
+    public var networkRepresentation: Data {
         guard let data = self.data(using: .utf8) else {
             fatalError()
         }

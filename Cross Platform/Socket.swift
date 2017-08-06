@@ -68,7 +68,7 @@ public class Socket {
             initializeMessageBuffer()
         }
     }
-    var messageBuffer: [UInt8]!
+    public var messageBuffer: [UInt8]!
     
     private func initializeMessageBuffer() {
         self.messageBuffer = [UInt8](repeatElement(0, count: bufferLength))
@@ -144,13 +144,15 @@ public class Socket {
         }
     }
     
-    func send(data: Data, toAddress address: String, onService service: SocketAddressService) throws {
+    public func send(object: NetworkRepresentable, toAddress address: String, onService service: SocketAddressService) throws {
+        let data = object.networkRepresentation
+        
         try data.withUnsafeBytes({ (dataPtr) -> Void in
             try send(message: dataPtr, ofLength: data.count, toAddress: address, onService: service)
         })
     }
     
-    public func send(message: UnsafePointer<CChar>, ofLength length: Int, toAddress address: String, onService service: SocketAddressService) throws {
+    private func send(message: UnsafePointer<CChar>, ofLength length: Int, toAddress address: String, onService service: SocketAddressService) throws {
         switch self.type {
         case .udp:
             try sendUDP(message: message, ofLength: length, toAddress: address, onService: service)

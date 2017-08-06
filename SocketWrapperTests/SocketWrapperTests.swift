@@ -117,6 +117,7 @@ class SocketWrapperTests: XCTestCase {
     }
     
     func testHeartbeatReceiver() {
+        XCTFail()
         let heartbeatSender = Socket(format: .udp)
         let receiver = Socket(format: .udp)
         

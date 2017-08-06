@@ -8,12 +8,18 @@
 
 import Foundation
 
-extension Data {
-    func decode<T: NetworkRepresentable>(atOffset offset: Int) throws -> T {
+public extension Data {
+    public func decode<T: NetworkRepresentable>(atOffset offset: inout Int) throws -> T {
+        let value = try self.decode(T.self, atOffset: offset)
+        offset += MemoryLayout.size(ofValue: value)
+        return value
+    }
+    
+    public func decode<T: NetworkRepresentable>(atOffset offset: Int) throws -> T {
         return try self.decode(T.self, atOffset: offset)
     }
     
-    func decode<T: NetworkRepresentable>(_: T.Type, atOffset offset: Int, withLength length: Int = MemoryLayout<T>.stride) throws -> T {
+    public func decode<T: NetworkRepresentable>(_: T.Type, atOffset offset: Int, withLength length: Int = MemoryLayout<T>.stride) throws -> T {
         let range = offset..<(offset + length)
         let subData = self[range]
         guard let value = T(withNetworkRepresentation: subData) else {

@@ -20,20 +20,6 @@
                ReferencedContainer = "container:SocketWrapper.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2778DB161F2F6DF500F6A289"
-               BuildableName = "SocketWrapperTests.xctest"
-               BlueprintName = "SocketWrapperTests"
-               ReferencedContainer = "container:SocketWrapper.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -43,26 +29,7 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2778DB161F2F6DF500F6A289"
-               BuildableName = "SocketWrapperTests.xctest"
-               BlueprintName = "SocketWrapperTests"
-               ReferencedContainer = "container:SocketWrapper.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2778DB0D1F2F6DF500F6A289"
-            BuildableName = "SocketWrapper.framework"
-            BlueprintName = "SocketWrapper"
-            ReferencedContainer = "container:SocketWrapper.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
