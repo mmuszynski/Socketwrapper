@@ -15,6 +15,7 @@
 		2778DB291F2F6DFD00F6A289 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778DB281F2F6DFD00F6A289 /* Socket.swift */; };
 		2778DB2B1F2F748500F6A289 /* SocketAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778DB2A1F2F748500F6A289 /* SocketAddress.swift */; };
 		2778DB2D1F2F9C1000F6A289 /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778DB2C1F2F9C1000F6A289 /* DataExtensions.swift */; };
+		27B3E72A1F38D03C00EBBE78 /* SocketWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2778DB111F2F6DF500F6A289 /* SocketWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27BC60341F360B71001E109F /* SocketWrapper_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27BC602B1F360B71001E109F /* SocketWrapper_iOS.framework */; };
 		27BC60391F360B71001E109F /* SocketWrapper_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BC60381F360B71001E109F /* SocketWrapper_iOSTests.swift */; };
 		27BC603B1F360B71001E109F /* SocketWrapper_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC602D1F360B71001E109F /* SocketWrapper_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -183,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27BC603B1F360B71001E109F /* SocketWrapper_iOS.h in Headers */,
+				27B3E72A1F38D03C00EBBE78 /* SocketWrapper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +276,7 @@
 					2778DB0D1F2F6DF500F6A289 = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 					};
 					2778DB161F2F6DF500F6A289 = {
 						CreatedOnToolsVersion = 9.0;
@@ -510,7 +513,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = DF288G8ZJ6;
@@ -523,8 +527,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mmuszynski.SocketWrapper;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -533,7 +539,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = DF288G8ZJ6;
@@ -546,7 +553,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mmuszynski.SocketWrapper;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
