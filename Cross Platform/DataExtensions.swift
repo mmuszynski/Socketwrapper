@@ -27,10 +27,8 @@ public extension Data {
         }
         return value
     }
-}
-
-extension Data {
-    var hexEncodedString: String {
+    
+    public var hexEncodedString: String {
         return map { String(format: "%02hhx", $0) }.joined()
     }
 }
