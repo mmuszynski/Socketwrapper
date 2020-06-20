@@ -144,15 +144,17 @@ public class Socket {
         }
     }
     
-    public func send(object: NetworkRepresentable, toAddress address: String, onService service: SocketAddressService) throws {
+    public func send(_ object: NetworkRepresentable, toAddress address: String, onService service: SocketAddressService) throws {
         let data = object.networkRepresentation
         
-        try data.withUnsafeBytes({ (dataPtr) -> Void in
-            try send(message: dataPtr, ofLength: data.count, toAddress: address, onService: service)
+        try data.withUnsafeBytes({ (dataPtr: UnsafeRawBufferPointer) -> Void in
+            dataPtr.bindMemory(to: CChar.self)
+            let msg = dataPtr.baseAddress!
+            try send(message: msg, ofLength: data.count, toAddress: address, onService: service)
         })
     }
     
-    private func send(message: UnsafePointer<CChar>, ofLength length: Int, toAddress address: String, onService service: SocketAddressService) throws {
+    private func send(message: UnsafeRawPointer, ofLength length: Int, toAddress address: String, onService service: SocketAddressService) throws {
         switch self.type {
         case .udp:
             try sendUDP(message: message, ofLength: length, toAddress: address, onService: service)
@@ -161,7 +163,7 @@ public class Socket {
         }
     }
     
-    private func sendUDP(message: UnsafePointer<CChar>, ofLength length: Int, toAddress address: String, onService service: SocketAddressService) throws {
+    private func sendUDP(message: UnsafeRawPointer, ofLength length: Int, toAddress address: String, onService service: SocketAddressService) throws {
         
         guard let fd = fileDescriptor else {
             try open()

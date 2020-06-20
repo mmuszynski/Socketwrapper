@@ -16,8 +16,8 @@ public protocol NetworkRepresentable {
 extension NetworkRepresentable {
     public init?(withNetworkRepresentation networkRepresentation: Data) {
         let data = Data(networkRepresentation.reversed())
-        self = data.withUnsafeBytes { (ptr: UnsafePointer<Self>) -> Self in
-            return ptr.pointee
+        self = data.withUnsafeBytes { (ptr: UnsafeRawBufferPointer) -> Self in
+            return ptr.load(as: Self.self)
         }
     }
     

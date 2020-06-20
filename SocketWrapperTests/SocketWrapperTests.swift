@@ -24,11 +24,7 @@ class SocketWrapperTests: XCTestCase {
         do {
             //Create a UDP Socket
             let socket = Socket(format: .udp)
-            var data = "send once".networkRepresentation
-            
-            try data.withUnsafeBytes({ (ptr) -> Void in
-                try socket.send(message: ptr, ofLength: data.count, toAddress: "192.168.1.4", onService: .port(7000))
-            })
+            try socket.send("send once", toAddress: "192.168.1.4", onService: .port(7000))
             
         } catch {
             XCTFail("\(error)")
@@ -88,7 +84,7 @@ class SocketWrapperTests: XCTestCase {
                     }
                 }
                 
-                try sender.send(data: "yo".networkRepresentation, toAddress: "localhost", onService: .port(54321))
+                try sender.send("yo", toAddress: "localhost", onService: .port(54321))
             } catch {
                 XCTFail("\(error)")
                 expectation.fulfill()
@@ -128,9 +124,9 @@ class SocketWrapperTests: XCTestCase {
             XCTFail()
         }
         
-        let timer = Timer(timeInterval: 0.5, repeats: true) { timer in
+        let _ = Timer(timeInterval: 0.5, repeats: true) { timer in
             do {
-                try heartbeatSender.send(data: "beat".networkRepresentation, toAddress: "localhost", onService: .port(12345))
+                try heartbeatSender.send("beat", toAddress: "localhost", onService: .port(12345))
             } catch {
                 XCTFail()
             }
