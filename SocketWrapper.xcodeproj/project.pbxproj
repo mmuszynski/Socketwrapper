@@ -15,14 +15,6 @@
 		2778DB291F2F6DFD00F6A289 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778DB281F2F6DFD00F6A289 /* Socket.swift */; };
 		2778DB2B1F2F748500F6A289 /* SocketAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778DB2A1F2F748500F6A289 /* SocketAddress.swift */; };
 		2778DB2D1F2F9C1000F6A289 /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778DB2C1F2F9C1000F6A289 /* DataExtensions.swift */; };
-		27BC60341F360B71001E109F /* SocketWrapper_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27BC602B1F360B71001E109F /* SocketWrapper_iOS.framework */; };
-		27BC60391F360B71001E109F /* SocketWrapper_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BC60381F360B71001E109F /* SocketWrapper_iOSTests.swift */; };
-		27BC603B1F360B71001E109F /* SocketWrapper_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC602D1F360B71001E109F /* SocketWrapper_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27BC60421F360B7A001E109F /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778DB281F2F6DFD00F6A289 /* Socket.swift */; };
-		27BC60431F360B7A001E109F /* SocketError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273FD0EA1F3361BA00722FAB /* SocketError.swift */; };
-		27BC60441F360B7A001E109F /* SocketAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778DB2A1F2F748500F6A289 /* SocketAddress.swift */; };
-		27BC60451F360B7A001E109F /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778DB2C1F2F9C1000F6A289 /* DataExtensions.swift */; };
-		27BC60461F360B7A001E109F /* NetworkRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271659271F31665A00C6170A /* NetworkRepresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,13 +24,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2778DB0D1F2F6DF500F6A289;
 			remoteInfo = SocketWrapper;
-		};
-		27BC60351F360B71001E109F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2778DB051F2F6DF500F6A289 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 27BC602A1F360B71001E109F;
-			remoteInfo = "SocketWrapper-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -54,12 +39,6 @@
 		2778DB281F2F6DFD00F6A289 /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 		2778DB2A1F2F748500F6A289 /* SocketAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketAddress.swift; sourceTree = "<group>"; };
 		2778DB2C1F2F9C1000F6A289 /* DataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
-		27BC602B1F360B71001E109F /* SocketWrapper_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketWrapper_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		27BC602D1F360B71001E109F /* SocketWrapper_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketWrapper_iOS.h; sourceTree = "<group>"; };
-		27BC602E1F360B71001E109F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27BC60331F360B71001E109F /* SocketWrapper-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SocketWrapper-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		27BC60381F360B71001E109F /* SocketWrapper_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketWrapper_iOSTests.swift; sourceTree = "<group>"; };
-		27BC603A1F360B71001E109F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,21 +57,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		27BC60271F360B71001E109F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		27BC60301F360B71001E109F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				27BC60341F360B71001E109F /* SocketWrapper_iOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -102,8 +66,6 @@
 				27BC60481F360BED001E109F /* Cross Platform */,
 				2778DB101F2F6DF500F6A289 /* SocketWrapper */,
 				2778DB1B1F2F6DF500F6A289 /* SocketWrapperTests */,
-				27BC602C1F360B71001E109F /* SocketWrapper-iOS */,
-				27BC60371F360B71001E109F /* SocketWrapper-iOSTests */,
 				2778DB0F1F2F6DF500F6A289 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,8 +75,6 @@
 			children = (
 				2778DB0E1F2F6DF500F6A289 /* SocketWrapper.framework */,
 				2778DB171F2F6DF500F6A289 /* SocketWrapperTests.xctest */,
-				27BC602B1F360B71001E109F /* SocketWrapper_iOS.framework */,
-				27BC60331F360B71001E109F /* SocketWrapper-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,24 +97,6 @@
 			path = SocketWrapperTests;
 			sourceTree = "<group>";
 		};
-		27BC602C1F360B71001E109F /* SocketWrapper-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				27BC602D1F360B71001E109F /* SocketWrapper_iOS.h */,
-				27BC602E1F360B71001E109F /* Info.plist */,
-			);
-			path = "SocketWrapper-iOS";
-			sourceTree = "<group>";
-		};
-		27BC60371F360B71001E109F /* SocketWrapper-iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				27BC60381F360B71001E109F /* SocketWrapper_iOSTests.swift */,
-				27BC603A1F360B71001E109F /* Info.plist */,
-			);
-			path = "SocketWrapper-iOSTests";
-			sourceTree = "<group>";
-		};
 		27BC60481F360BED001E109F /* Cross Platform */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,14 +117,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2778DB1F1F2F6DF500F6A289 /* SocketWrapper.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		27BC60281F360B71001E109F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				27BC603B1F360B71001E109F /* SocketWrapper_iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,42 +159,6 @@
 			productReference = 2778DB171F2F6DF500F6A289 /* SocketWrapperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		27BC602A1F360B71001E109F /* SocketWrapper-iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 27BC60401F360B71001E109F /* Build configuration list for PBXNativeTarget "SocketWrapper-iOS" */;
-			buildPhases = (
-				27BC60261F360B71001E109F /* Sources */,
-				27BC60271F360B71001E109F /* Frameworks */,
-				27BC60281F360B71001E109F /* Headers */,
-				27BC60291F360B71001E109F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "SocketWrapper-iOS";
-			productName = "SocketWrapper-iOS";
-			productReference = 27BC602B1F360B71001E109F /* SocketWrapper_iOS.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		27BC60321F360B71001E109F /* SocketWrapper-iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 27BC60411F360B71001E109F /* Build configuration list for PBXNativeTarget "SocketWrapper-iOSTests" */;
-			buildPhases = (
-				27BC602F1F360B71001E109F /* Sources */,
-				27BC60301F360B71001E109F /* Frameworks */,
-				27BC60311F360B71001E109F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				27BC60361F360B71001E109F /* PBXTargetDependency */,
-			);
-			name = "SocketWrapper-iOSTests";
-			productName = "SocketWrapper-iOSTests";
-			productReference = 27BC60331F360B71001E109F /* SocketWrapper-iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -279,12 +177,6 @@
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 1130;
 					};
-					27BC602A1F360B71001E109F = {
-						CreatedOnToolsVersion = 9.0;
-					};
-					27BC60321F360B71001E109F = {
-						CreatedOnToolsVersion = 9.0;
-					};
 				};
 			};
 			buildConfigurationList = 2778DB081F2F6DF500F6A289 /* Build configuration list for PBXProject "SocketWrapper" */;
@@ -301,8 +193,6 @@
 			targets = (
 				2778DB0D1F2F6DF500F6A289 /* SocketWrapper */,
 				2778DB161F2F6DF500F6A289 /* SocketWrapperTests */,
-				27BC602A1F360B71001E109F /* SocketWrapper-iOS */,
-				27BC60321F360B71001E109F /* SocketWrapper-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -316,20 +206,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2778DB151F2F6DF500F6A289 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		27BC60291F360B71001E109F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		27BC60311F360B71001E109F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -359,26 +235,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		27BC60261F360B71001E109F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				27BC60421F360B7A001E109F /* Socket.swift in Sources */,
-				27BC60461F360B7A001E109F /* NetworkRepresentable.swift in Sources */,
-				27BC60451F360B7A001E109F /* DataExtensions.swift in Sources */,
-				27BC60431F360B7A001E109F /* SocketError.swift in Sources */,
-				27BC60441F360B7A001E109F /* SocketAddress.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		27BC602F1F360B71001E109F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				27BC60391F360B71001E109F /* SocketWrapper_iOSTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -386,11 +242,6 @@
 			isa = PBXTargetDependency;
 			target = 2778DB0D1F2F6DF500F6A289 /* SocketWrapper */;
 			targetProxy = 2778DB191F2F6DF500F6A289 /* PBXContainerItemProxy */;
-		};
-		27BC60361F360B71001E109F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 27BC602A1F360B71001E109F /* SocketWrapper-iOS */;
-			targetProxy = 27BC60351F360B71001E109F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -586,88 +437,6 @@
 			};
 			name = Release;
 		};
-		27BC603C1F360B71001E109F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = DF288G8ZJ6;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "SocketWrapper-iOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mmuszynski.SocketWrapper-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		27BC603D1F360B71001E109F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = DF288G8ZJ6;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "SocketWrapper-iOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mmuszynski.SocketWrapper-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		27BC603E1F360B71001E109F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = DF288G8ZJ6;
-				INFOPLIST_FILE = "SocketWrapper-iOSTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mmuszynski.SocketWrapper-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		27BC603F1F360B71001E109F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = DF288G8ZJ6;
-				INFOPLIST_FILE = "SocketWrapper-iOSTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mmuszynski.SocketWrapper-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -694,24 +463,6 @@
 			buildConfigurations = (
 				2778DB261F2F6DF500F6A289 /* Debug */,
 				2778DB271F2F6DF500F6A289 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		27BC60401F360B71001E109F /* Build configuration list for PBXNativeTarget "SocketWrapper-iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				27BC603C1F360B71001E109F /* Debug */,
-				27BC603D1F360B71001E109F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		27BC60411F360B71001E109F /* Build configuration list for PBXNativeTarget "SocketWrapper-iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				27BC603E1F360B71001E109F /* Debug */,
-				27BC603F1F360B71001E109F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
