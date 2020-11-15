@@ -63,7 +63,7 @@
 		2778DB041F2F6DF500F6A289 = {
 			isa = PBXGroup;
 			children = (
-				27BC60481F360BED001E109F /* Source */,
+				27BC60481F360BED001E109F /* Sources */,
 				2778DB1B1F2F6DF500F6A289 /* Tests */,
 				2778DB0F1F2F6DF500F6A289 /* Products */,
 			);
@@ -87,7 +87,7 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		27BC60481F360BED001E109F /* Source */ = {
+		27BC60481F360BED001E109F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				2778DB111F2F6DF500F6A289 /* SocketWrapper.h */,
@@ -98,7 +98,7 @@
 				2778DB2C1F2F9C1000F6A289 /* DataExtensions.swift */,
 				271659271F31665A00C6170A /* NetworkRepresentable.swift */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
