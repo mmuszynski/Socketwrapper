@@ -81,13 +81,12 @@
 		2778DB1B1F2F6DF500F6A289 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				2778DB1C1F2F6DF500F6A289 /* SocketWrapperTests.swift */,
-				2778DB1E1F2F6DF500F6A289 /* Info.plist */,
+				2792E0862561F799005520D3 /* SocketWrapper */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		27BC60481F360BED001E109F /* Sources */ = {
+		2792E0852561F782005520D3 /* SocketWrapper */ = {
 			isa = PBXGroup;
 			children = (
 				2778DB111F2F6DF500F6A289 /* SocketWrapper.h */,
@@ -97,6 +96,23 @@
 				2778DB2A1F2F748500F6A289 /* SocketAddress.swift */,
 				2778DB2C1F2F9C1000F6A289 /* DataExtensions.swift */,
 				271659271F31665A00C6170A /* NetworkRepresentable.swift */,
+			);
+			path = SocketWrapper;
+			sourceTree = "<group>";
+		};
+		2792E0862561F799005520D3 /* SocketWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				2778DB1C1F2F6DF500F6A289 /* SocketWrapperTests.swift */,
+				2778DB1E1F2F6DF500F6A289 /* Info.plist */,
+			);
+			path = SocketWrapper;
+			sourceTree = "<group>";
+		};
+		27BC60481F360BED001E109F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2792E0852561F782005520D3 /* SocketWrapper */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
