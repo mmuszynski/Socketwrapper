@@ -6,7 +6,7 @@
 //  Copyright © 2017 Mike Muszynski. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for SocketWrapper.
 FOUNDATION_EXPORT double SocketWrapperVersionNumber;

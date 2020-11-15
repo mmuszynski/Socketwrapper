@@ -63,9 +63,8 @@
 		2778DB041F2F6DF500F6A289 = {
 			isa = PBXGroup;
 			children = (
-				27BC60481F360BED001E109F /* Cross Platform */,
-				2778DB101F2F6DF500F6A289 /* SocketWrapper */,
-				2778DB1B1F2F6DF500F6A289 /* SocketWrapperTests */,
+				27BC60481F360BED001E109F /* Source */,
+				2778DB1B1F2F6DF500F6A289 /* Tests */,
 				2778DB0F1F2F6DF500F6A289 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,34 +78,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2778DB101F2F6DF500F6A289 /* SocketWrapper */ = {
-			isa = PBXGroup;
-			children = (
-				2778DB111F2F6DF500F6A289 /* SocketWrapper.h */,
-				2778DB121F2F6DF500F6A289 /* Info.plist */,
-			);
-			path = SocketWrapper;
-			sourceTree = "<group>";
-		};
-		2778DB1B1F2F6DF500F6A289 /* SocketWrapperTests */ = {
+		2778DB1B1F2F6DF500F6A289 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				2778DB1C1F2F6DF500F6A289 /* SocketWrapperTests.swift */,
 				2778DB1E1F2F6DF500F6A289 /* Info.plist */,
 			);
-			path = SocketWrapperTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
-		27BC60481F360BED001E109F /* Cross Platform */ = {
+		27BC60481F360BED001E109F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				2778DB111F2F6DF500F6A289 /* SocketWrapper.h */,
+				2778DB121F2F6DF500F6A289 /* Info.plist */,
 				2778DB281F2F6DFD00F6A289 /* Socket.swift */,
 				273FD0EA1F3361BA00722FAB /* SocketError.swift */,
 				2778DB2A1F2F748500F6A289 /* SocketAddress.swift */,
 				2778DB2C1F2F9C1000F6A289 /* DataExtensions.swift */,
 				271659271F31665A00C6170A /* NetworkRepresentable.swift */,
 			);
-			path = "Cross Platform";
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,7 +158,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Mike Muszynski";
 				TargetAttributes = {
 					2778DB0D1F2F6DF500F6A289 = {
@@ -185,6 +177,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 2778DB041F2F6DF500F6A289;
 			productRefGroup = 2778DB0F1F2F6DF500F6A289 /* Products */;
@@ -271,6 +264,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -297,7 +291,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -333,6 +328,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -353,7 +349,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

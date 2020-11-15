@@ -38,7 +38,6 @@ extension UInt32: NetworkRepresentable {}
 extension UInt: NetworkRepresentable {}
 extension Float: NetworkRepresentable {}
 extension Double: NetworkRepresentable {}
-extension CGFloat: NetworkRepresentable {}
 
 extension String: NetworkRepresentable {
     public init?(withNetworkRepresentation networkRepresentation: Data) {
