@@ -17,5 +17,18 @@
 			<integer>1</integer>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>SocketWrapper</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>SocketWrapperTests</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

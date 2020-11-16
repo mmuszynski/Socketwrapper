@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "SocketWrapper",
+    platforms: [.macOS(.v10_12), .iOS(.v10)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -20,9 +21,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "SocketWrapper",
-            dependencies: []),
+            dependencies: [],
+            exclude: ["Info.plist"]),
         .testTarget(
             name: "SocketWrapperTests",
-            dependencies: ["SocketWrapper"]),
+            dependencies: ["SocketWrapper"],
+            exclude: ["Info.plist"]),
     ]
 )
