@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if os(Linux)
+import Glibc
+#endif
 
 //Communication Style: SOCK_STREAM/SOCK_DGRAM
 //Namespace
