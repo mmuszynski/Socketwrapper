@@ -226,7 +226,12 @@ public class Socket {
             try setReceiveTimeout(seconds: seconds)
             return
         }
-        var time = timeval(tv_sec: Int(seconds), tv_usec: Int32(seconds.truncatingRemainder(dividingBy: 1.0) * 1000000))
+        
+        #if os(Linux)
+        var time = timeval(tv_sec: Int(seconds), tv_usec: Int(seconds.truncatingRemainder(dividingBy: 1.0) * 1000000))
+        #else
+        var time = timeval(tv_sec: Int(seconds), tv_usec: __darwin_suseconds_t(seconds.truncatingRemainder(dividingBy: 1.0) * 1000000))
+        #endif
         let code = setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &time, socklen_t(MemoryLayout<timeval>.size))
         guard code == 0 else {
             fatalError("\(errno)")
