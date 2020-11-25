@@ -34,11 +34,11 @@ public enum SocketFormat {
     var value: Int32 {
         switch self {
         case .tcp:
-            return SOCK_STREAM
+            return Int32(SOCK_STREAM)
         case .udp:
-            return SOCK_DGRAM
+            return Int32(SOCK_DGRAM)
         case .raw:
-            return SOCK_RAW
+            return Int32(SOCK_RAW)
         }
     }
 }
