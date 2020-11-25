@@ -34,11 +34,11 @@ public enum SocketFormat {
     var value: Int32 {
         switch self {
         case .tcp:
-            return Int32(SOCK_STREAM)
+            return 1 //SOCK_STREAM
         case .udp:
-            return Int32(SOCK_DGRAM)
+            return 2 //SOCK_DGRAM
         case .raw:
-            return Int32(SOCK_RAW)
+            return 3 //SOCK_RAW
         }
     }
 }
@@ -226,7 +226,7 @@ public class Socket {
             try setReceiveTimeout(seconds: seconds)
             return
         }
-        var time = timeval(tv_sec: Int(seconds), tv_usec: __darwin_suseconds_t(seconds.truncatingRemainder(dividingBy: 1.0) * 1000000))
+        var time = timeval(tv_sec: Int(seconds), tv_usec: Int32(seconds.truncatingRemainder(dividingBy: 1.0) * 1000000))
         let code = setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &time, socklen_t(MemoryLayout<timeval>.size))
         guard code == 0 else {
             fatalError("\(errno)")
